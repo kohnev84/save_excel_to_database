@@ -4,6 +4,10 @@ const cors = require('cors')
 var bodyParser = require('body-parser');
 var pg = require('pg');
 
+
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
+
 app.use(cors({
     origin: 'http://localhost:3000'
 }));
@@ -94,6 +98,10 @@ app.post('/save_data', function (req, res) {
             res.status(200).json({ response: 'Пользователи успешно сохранены в базе данных' })
         })
     })
+})
+
+app.post('/upload', upload.single('ited'), function (req, res, next) {
+
 })
 
 app.listen(5000, console.log("Сервер запущен на порту 5000"))
